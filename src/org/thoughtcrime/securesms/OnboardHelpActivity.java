@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.connect.ApplicationDcContext;
@@ -16,6 +18,7 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 
 public class OnboardHelpActivity extends PassphraseRequiredActionBarActivity
 {
+    private WebView webView;
     private final DynamicTheme    dynamicTheme    = new DynamicTheme();
     private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
@@ -30,6 +33,15 @@ public class OnboardHelpActivity extends PassphraseRequiredActionBarActivity
         setContentView(R.layout.onboard_help_activity);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.menu_help));
+
+        webView = findViewById(R.id.webview);
+        webView.setWebViewClient(new WebViewClient(){
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
+        webView.loadUrl("https://delta.chat");
     }
 
     @Override
