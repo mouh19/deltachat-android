@@ -41,7 +41,7 @@ public class OnboardHelpActivity extends PassphraseRequiredActionBarActivity
                 return true;
             }
         });
-        webView.loadUrl("https://delta.chat");
+        webView.loadUrl("file:///android_asset/help/en/index.html");
     }
 
     @Override
